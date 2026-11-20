@@ -29,9 +29,9 @@ def _failed(alert: Alert, model: str, error: str, raw: str | None) -> TriageResu
                         needs_human_review=True, error=error, raw_output=raw, model=model)
 
 
-def triage_alert(alert: Alert, client: ChatClient) -> TriageResult:
+def triage_alert(alert: Alert, client: ChatClient, system_prompt: str = SYSTEM_PROMPT) -> TriageResult:
     try:
-        raw = client.chat(SYSTEM_PROMPT, build_user_prompt(alert))
+        raw = client.chat(system_prompt, build_user_prompt(alert))
     except OllamaError as ex:
         return _failed(alert, client.model, str(ex), None)
 

@@ -6,9 +6,7 @@ from typing import Literal
 
 from pydantic import BaseModel, ConfigDict, Field
 
-from ..schema import Severity
-
-TECHNIQUE_PATTERN = r"^T\d{4}(\.\d{3})?$"
+from ..schema import TECHNIQUE_PATTERN, Severity
 
 
 class GroundTruth(BaseModel):

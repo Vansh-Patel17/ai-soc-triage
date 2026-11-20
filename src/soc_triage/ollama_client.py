@@ -35,7 +35,12 @@ class OllamaClient:
             body["format"] = "json"
         try:
             resp = requests.post(f"{self.url}/api/chat", json=body, timeout=self.timeout)
-            resp.raise_for_status()
-            return resp.json()["message"]["content"]
-        except (requests.RequestException, KeyError, ValueError) as ex:
+        except requests.RequestException as ex:
             raise OllamaError(f"Ollama request failed: {ex}") from ex
+        if not resp.ok:
+            # Ollama puts the reason in the body, e.g. "token repeat limit reached".
+            raise OllamaError(f"Ollama HTTP {resp.status_code}: {resp.text[:300]}")
+        try:
+            return resp.json()["message"]["content"]
+        except (KeyError, TypeError, ValueError) as ex:
+            raise OllamaError(f"Unexpected Ollama response: {ex}") from ex

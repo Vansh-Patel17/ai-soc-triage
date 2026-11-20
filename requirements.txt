@@ -4,5 +4,7 @@ requests>=2.32
 pydantic>=2.8
 # Load local config (OLLAMA_URL, model name) from .env
 python-dotenv>=1.0
+# Parse Windows .evtx event logs (dataset building / ingest)
+python-evtx>=0.8
 # Tests
 pytest>=8.0

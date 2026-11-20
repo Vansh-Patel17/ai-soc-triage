@@ -1,0 +1,8 @@
+# HTTP client for the local Ollama API (http://localhost:11434)
+requests>=2.32
+# Strict schema validation of model output (triage verdicts)
+pydantic>=2.8
+# Load local config (OLLAMA_URL, model name) from .env
+python-dotenv>=1.0
+# Tests
+pytest>=8.0

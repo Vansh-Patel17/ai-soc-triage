@@ -12,6 +12,15 @@ from typing import Literal
 from pydantic import BaseModel, ConfigDict, Field
 
 Severity = Literal["informational", "low", "medium", "high", "critical"]
+SEVERITY_ORDER: tuple[str, ...] = ("informational", "low", "medium", "high", "critical")
+
+
+def severity_index(sev: str) -> int:
+    return SEVERITY_ORDER.index(sev)
+
+
+def max_severity(*sevs: str) -> str:
+    return max(sevs, key=severity_index)
 
 # ATT&CK technique or sub-technique ID, e.g. T1003 or T1003.006.
 TECHNIQUE_PATTERN = r"^T\d{4}(\.\d{3})?$"
@@ -62,3 +71,9 @@ class TriageResult(BaseModel):
     error: str | None = None
     raw_output: str | None = None
     model: str
+    # Hardened pipeline only: what the model said before rule adjustments, and why
+    # the delivered verdict differs (floor raised, injection detected, output check).
+    model_verdict: TriageVerdict | None = None
+    flags: list[str] = Field(default_factory=list)
+    pipeline: str = "baseline"
+    nonce: str | None = None   # isolation delimiter token, kept so results can be replayed

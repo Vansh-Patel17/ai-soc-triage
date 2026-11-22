@@ -12,11 +12,7 @@ from typing import Iterable
 from ..schema import TriageResult
 from .ground_truth import GroundTruth
 
-SEVERITY_ORDER = ("informational", "low", "medium", "high", "critical")
-
-
-def severity_index(sev: str) -> int:
-    return SEVERITY_ORDER.index(sev)
+from ..schema import SEVERITY_ORDER, severity_index  # noqa: F401  (re-exported)
 
 
 def _base(technique: str) -> str:
@@ -49,6 +45,7 @@ def score_one(truth: GroundTruth, result: TriageResult) -> dict:
         "severity_within_one": abs(delta) <= 1,
         "truth_technique": truth.technique,
         "pred_technique": pred.attack_technique,
+        "needs_human_review": result.needs_human_review,
         "technique_exact": tech_exact,
         "technique_parent": tech_parent,
     }
@@ -74,6 +71,7 @@ def summarize_group(scores: list[dict]) -> dict:
         "benign_flagged_medium_plus": _rate(
             sum(severity_index(s["pred_severity"]) >= severity_index("medium") for s in benign), len(benign)),
         "failed_closed": _rate(sum(s["status"] == "failed" for s in scores), n),
+        "flagged_for_review": _rate(sum(s.get("needs_human_review", s["status"] == "failed") for s in scores), n),
         # Same severity metrics restricted to outputs that validated, so a lucky
         # escalation verdict on a failure can't inflate accuracy.
         "severity_exact_valid_only": _rate(sum(s["severity_exact"] for s in ok), len(ok)),

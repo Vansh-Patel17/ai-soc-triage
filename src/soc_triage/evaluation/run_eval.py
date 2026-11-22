@@ -17,9 +17,8 @@ from pathlib import Path
 from dotenv import load_dotenv
 
 from ..ollama_client import OllamaClient
-from ..prompt import SYSTEM_PROMPT
+from ..pipelines import make_pipeline
 from ..schema import Alert
-from ..triage import triage_alert
 from .ground_truth import GroundTruth
 from .scoring import score_one, summarize
 
@@ -32,14 +31,17 @@ TABLE_ROWS = [("severity_exact", "Severity exact match"),
               ("technique_exact", "Technique exact (primary/related)"),
               ("technique_parent", "Technique parent match"),
               ("benign_flagged_medium_plus", "Benign flagged >= medium"),
-              ("failed_closed", "Failed closed")]
+              ("failed_closed", "Failed closed"),
+              ("flagged_for_review", "Flagged for human review")]
 
 
 def _git_state() -> dict:
     try:
         commit = subprocess.run(["git", "rev-parse", "HEAD"], capture_output=True, text=True, check=True).stdout.strip()
-        dirty = bool(subprocess.run(["git", "status", "--porcelain"], capture_output=True, text=True).stdout.strip())
-        return {"commit": commit, "dirty": dirty}
+        # eval/results/ is excluded: earlier outputs in a chain of runs cannot affect the code under test.
+        status = subprocess.run(["git", "status", "--porcelain", "--", ".", ":(exclude)eval/results"],
+                                capture_output=True, text=True).stdout.strip()
+        return {"commit": commit, "dirty": bool(status), "dirty_check_excludes": "eval/results/"}
     except (OSError, subprocess.CalledProcessError):
         return {"commit": None, "dirty": None}
 
@@ -64,6 +66,7 @@ def main(argv: list[str] | None = None) -> int:
     ap.add_argument("--out", required=True, help="results JSON path")
     ap.add_argument("--label", default="baseline-clean", help="run label recorded in the results")
     ap.add_argument("--model", help="override OLLAMA_MODEL")
+    ap.add_argument("--pipeline", default="baseline", help="baseline | hardened | hardened:<layers>")
     ap.add_argument("--limit", type=int, help="only the first N alerts (smoke test)")
     args = ap.parse_args(argv)
 
@@ -74,12 +77,13 @@ def main(argv: list[str] | None = None) -> int:
     if args.limit:
         alerts = alerts[: args.limit]
     client = OllamaClient(model=args.model)
+    pipeline = make_pipeline(args.pipeline)
 
     records, scores = [], []
     started = datetime.now(timezone.utc)
     for i, alert in enumerate(alerts, 1):
         t0 = time.perf_counter()
-        result = triage_alert(alert, client)
+        result = pipeline(alert, client)
         elapsed = round(time.perf_counter() - t0, 2)
         score = score_one(truths[alert.alert_id], result)
         scores.append(score)
@@ -98,8 +102,8 @@ def main(argv: list[str] | None = None) -> int:
             "model": client.model,
             "ollama_url": client.url,
             "decoding": {"temperature": 0, "seed": client.seed},
-            "prompt_builder": "baseline-plain (no injection defense)",
-            "system_prompt_sha256": hashlib.sha256(SYSTEM_PROMPT.encode()).hexdigest(),
+            "pipeline": pipeline.name,
+            "system_prompt_sha256": hashlib.sha256(pipeline.system_prompt.encode()).hexdigest(),
             "git": _git_state(),
             "n_alerts": len(alerts),
         },

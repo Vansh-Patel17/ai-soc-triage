@@ -15,7 +15,7 @@ from dotenv import load_dotenv
 
 from .ollama_client import OllamaClient
 from .schema import Alert
-from .triage import triage_alert
+from .pipelines import make_pipeline
 
 
 def _load_alerts(args: argparse.Namespace) -> list[Alert]:
@@ -34,6 +34,8 @@ def main(argv: list[str] | None = None) -> int:
     ap.add_argument("--file", help="path to a JSON file containing one alert")
     ap.add_argument("--alerts", default="eval/alerts.json", help="alerts file for ID lookup")
     ap.add_argument("--model", help="override OLLAMA_MODEL")
+    ap.add_argument("--pipeline", default="baseline",
+                    help="baseline | hardened | hardened:<layer>+<layer> (isolation, output_checks, floor, detector)")
     ap.add_argument("--raw", action="store_true", help="include the raw model output")
     args = ap.parse_args(argv)
     if bool(args.file) == bool(args.alert_ids):
@@ -41,9 +43,10 @@ def main(argv: list[str] | None = None) -> int:
 
     load_dotenv()
     client = OllamaClient(model=args.model)
+    pipeline = make_pipeline(args.pipeline)
     exit_code = 0
     for alert in _load_alerts(args):
-        result = triage_alert(alert, client)
+        result = pipeline(alert, client)
         out = result.model_dump(mode="json", exclude=None if args.raw else {"raw_output"})
         print(json.dumps(out, indent=2, ensure_ascii=False))
         if result.status == "failed":

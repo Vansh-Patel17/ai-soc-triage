@@ -82,7 +82,7 @@ The design principle that follows is **asymmetric**. The model may escalate free
 - **Source and credit:** all events come from **EVTX-ATTACK-SAMPLES** by Samir Bousseaden (<https://github.com/sbousseaden/EVTX-ATTACK-SAMPLES>), a public collection of Windows event logs recorded during attack techniques. It is licensed under **GPL-3.0**.
   - `eval/alerts.json` is derived from it: its field values are copied verbatim from those event logs.
   - `eval/ground_truth.json` references the source files and record IDs.
-  - The raw `.evtx` files are not redistributed here; download them from the repository above.
+  - The raw `.evtx` files are not redistributed here. [`docs/data.md`](docs/data.md) lists the exact 20 upstream file paths, pinned to an upstream commit with per-file hashes, and gives download commands.
 - **Selection:** 40 events from 20 of its files, spanning Sysmon (24), Security (11), Service Control Manager (3), TerminalServices (1) and EventLog (1).
 - **Labels:** 27 malicious, 11 benign and 2 deliberately ambiguous. Severity counts are critical 4, high 18, medium 7 (including the 2 ambiguous) and informational 11. Difficulty is easy 11, medium 19, hard 10.
 - **Model-visible vs hidden:** `eval/alerts.json` contains only what the model sees. `eval/ground_truth.json` holds the hand labels: severity, ATT&CK technique and related techniques, difficulty, an ambiguity note, and the source file and record. The source filename, which encodes the technique, appears only in ground truth.
@@ -235,9 +235,10 @@ python -m venv .venv
 .venv\Scripts\python.exe -m pytest                      # 82 tests, no Ollama needed
 ```
 
-**Dataset** (optional; `eval/` is committed). This needs the raw EVTX-ATTACK-SAMPLES files in `data/`, and the rebuild is deterministic:
+**Dataset** (optional; `eval/` is committed). Download the 20 source files into `data/` using the commands in [`docs/data.md`](docs/data.md), then regenerate. The build is deterministic, and `git status` should then show no changes to `eval/alerts.json` or `eval/ground_truth.json`:
 ```powershell
 .venv\Scripts\python.exe scripts/build_dataset.py
+git diff --exit-code eval/alerts.json eval/ground_truth.json
 ```
 
 **Live model runs.** These need Ollama and can't be reproduced exactly because of non-determinism. For strict provenance, first `git checkout` the commit recorded in each results file. The baseline prompt is hash-pinned and unchanged since.

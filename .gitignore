@@ -16,6 +16,7 @@ env/
 
 # Local data (real logs/alerts may contain sensitive info)
 data/
+*.evtx
 *.log
 *.jsonl
 

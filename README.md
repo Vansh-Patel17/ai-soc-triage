@@ -241,6 +241,8 @@ python -m venv .venv
 ```
 
 **Live model runs.** These need Ollama and can't be reproduced exactly because of non-determinism. For strict provenance, first `git checkout` the commit recorded in each results file. The baseline prompt is hash-pinned and unchanged since.
+
+> **Commit hashes:** the results files (and the hashes quoted in this README) reference **pre-rewrite** commit hashes. History was rewritten once before publication to edit commit messages only; file contents are identical. [`docs/commit-map.md`](docs/commit-map.md) maps every old hash to its new one.
 ```powershell
 # 5.4 clean accuracy (~10 min each)
 .venv\Scripts\python.exe -m soc_triage.evaluation.run_eval --pipeline baseline --label baseline-clean --out eval/results/baseline_clean.json

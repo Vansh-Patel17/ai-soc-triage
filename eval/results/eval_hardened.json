@@ -1,0 +1,1470 @@
+{
+  "run": {
+    "label": "eval-hardened",
+    "started_utc": "2026-11-22T23:33:10+00:00",
+    "model": "llama3.1:latest",
+    "ollama_url": "http://localhost:11434",
+    "decoding": {
+      "temperature": 0,
+      "seed": 42
+    },
+    "pipeline": "hardened:isolation+output_checks+floor+detector",
+    "system_prompt_sha256": "203cc03ac160a1a538a826dc01cc109e2ae1886e4aacbf27eb82be54befc6c5c",
+    "git": {
+      "commit": "2e16e4f17db71485c76485ffec2caa112f03c715",
+      "dirty": false,
+      "dirty_check_excludes": "eval/results/"
+    },
+    "n_alerts": 40
+  },
+  "summary": {
+    "overall": {
+      "n": 40,
+      "severity_exact": {
+        "hits": 15,
+        "n": 40,
+        "rate": 0.375
+      },
+      "severity_within_one": {
+        "hits": 30,
+        "n": 40,
+        "rate": 0.75
+      },
+      "under_rated": {
+        "hits": 16,
+        "n": 40,
+        "rate": 0.4
+      },
+      "over_rated": {
+        "hits": 9,
+        "n": 40,
+        "rate": 0.225
+      },
+      "technique_exact": {
+        "hits": 1,
+        "n": 29,
+        "rate": 0.0345
+      },
+      "technique_parent": {
+        "hits": 1,
+        "n": 29,
+        "rate": 0.0345
+      },
+      "benign_flagged_medium_plus": {
+        "hits": 8,
+        "n": 11,
+        "rate": 0.7273
+      },
+      "failed_closed": {
+        "hits": 0,
+        "n": 40,
+        "rate": 0.0
+      },
+      "flagged_for_review": {
+        "hits": 7,
+        "n": 40,
+        "rate": 0.175
+      },
+      "severity_exact_valid_only": {
+        "hits": 15,
+        "n": 40,
+        "rate": 0.375
+      },
+      "severity_within_one_valid_only": {
+        "hits": 30,
+        "n": 40,
+        "rate": 0.75
+      }
+    },
+    "malicious": {
+      "n": 27,
+      "severity_exact": {
+        "hits": 12,
+        "n": 27,
+        "rate": 0.4444
+      },
+      "severity_within_one": {
+        "hits": 26,
+        "n": 27,
+        "rate": 0.963
+      },
+      "under_rated": {
+        "hits": 15,
+        "n": 27,
+        "rate": 0.5556
+      },
+      "over_rated": {
+        "hits": 0,
+        "n": 27,
+        "rate": 0.0
+      },
+      "technique_exact": {
+        "hits": 1,
+        "n": 27,
+        "rate": 0.037
+      },
+      "technique_parent": {
+        "hits": 1,
+        "n": 27,
+        "rate": 0.037
+      },
+      "benign_flagged_medium_plus": {
+        "hits": 0,
+        "n": 0,
+        "rate": null
+      },
+      "failed_closed": {
+        "hits": 0,
+        "n": 27,
+        "rate": 0.0
+      },
+      "flagged_for_review": {
+        "hits": 7,
+        "n": 27,
+        "rate": 0.2593
+      },
+      "severity_exact_valid_only": {
+        "hits": 12,
+        "n": 27,
+        "rate": 0.4444
+      },
+      "severity_within_one_valid_only": {
+        "hits": 26,
+        "n": 27,
+        "rate": 0.963
+      }
+    },
+    "ambiguous": {
+      "n": 2,
+      "severity_exact": {
+        "hits": 1,
+        "n": 2,
+        "rate": 0.5
+      },
+      "severity_within_one": {
+        "hits": 1,
+        "n": 2,
+        "rate": 0.5
+      },
+      "under_rated": {
+        "hits": 1,
+        "n": 2,
+        "rate": 0.5
+      },
+      "over_rated": {
+        "hits": 0,
+        "n": 2,
+        "rate": 0.0
+      },
+      "technique_exact": {
+        "hits": 0,
+        "n": 2,
+        "rate": 0.0
+      },
+      "technique_parent": {
+        "hits": 0,
+        "n": 2,
+        "rate": 0.0
+      },
+      "benign_flagged_medium_plus": {
+        "hits": 0,
+        "n": 0,
+        "rate": null
+      },
+      "failed_closed": {
+        "hits": 0,
+        "n": 2,
+        "rate": 0.0
+      },
+      "flagged_for_review": {
+        "hits": 0,
+        "n": 2,
+        "rate": 0.0
+      },
+      "severity_exact_valid_only": {
+        "hits": 1,
+        "n": 2,
+        "rate": 0.5
+      },
+      "severity_within_one_valid_only": {
+        "hits": 1,
+        "n": 2,
+        "rate": 0.5
+      }
+    },
+    "benign": {
+      "n": 11,
+      "severity_exact": {
+        "hits": 2,
+        "n": 11,
+        "rate": 0.1818
+      },
+      "severity_within_one": {
+        "hits": 3,
+        "n": 11,
+        "rate": 0.2727
+      },
+      "under_rated": {
+        "hits": 0,
+        "n": 11,
+        "rate": 0.0
+      },
+      "over_rated": {
+        "hits": 9,
+        "n": 11,
+        "rate": 0.8182
+      },
+      "technique_exact": {
+        "hits": 0,
+        "n": 0,
+        "rate": null
+      },
+      "technique_parent": {
+        "hits": 0,
+        "n": 0,
+        "rate": null
+      },
+      "benign_flagged_medium_plus": {
+        "hits": 8,
+        "n": 11,
+        "rate": 0.7273
+      },
+      "failed_closed": {
+        "hits": 0,
+        "n": 11,
+        "rate": 0.0
+      },
+      "flagged_for_review": {
+        "hits": 0,
+        "n": 11,
+        "rate": 0.0
+      },
+      "severity_exact_valid_only": {
+        "hits": 2,
+        "n": 11,
+        "rate": 0.1818
+      },
+      "severity_within_one_valid_only": {
+        "hits": 3,
+        "n": 11,
+        "rate": 0.2727
+      }
+    },
+    "difficulty=easy": {
+      "n": 11,
+      "severity_exact": {
+        "hits": 4,
+        "n": 11,
+        "rate": 0.3636
+      },
+      "severity_within_one": {
+        "hits": 7,
+        "n": 11,
+        "rate": 0.6364
+      },
+      "under_rated": {
+        "hits": 3,
+        "n": 11,
+        "rate": 0.2727
+      },
+      "over_rated": {
+        "hits": 4,
+        "n": 11,
+        "rate": 0.3636
+      },
+      "technique_exact": {
+        "hits": 0,
+        "n": 5,
+        "rate": 0.0
+      },
+      "technique_parent": {
+        "hits": 0,
+        "n": 5,
+        "rate": 0.0
+      },
+      "benign_flagged_medium_plus": {
+        "hits": 3,
+        "n": 6,
+        "rate": 0.5
+      },
+      "failed_closed": {
+        "hits": 0,
+        "n": 11,
+        "rate": 0.0
+      },
+      "flagged_for_review": {
+        "hits": 3,
+        "n": 11,
+        "rate": 0.2727
+      },
+      "severity_exact_valid_only": {
+        "hits": 4,
+        "n": 11,
+        "rate": 0.3636
+      },
+      "severity_within_one_valid_only": {
+        "hits": 7,
+        "n": 11,
+        "rate": 0.6364
+      }
+    },
+    "difficulty=medium": {
+      "n": 19,
+      "severity_exact": {
+        "hits": 5,
+        "n": 19,
+        "rate": 0.2632
+      },
+      "severity_within_one": {
+        "hits": 14,
+        "n": 19,
+        "rate": 0.7368
+      },
+      "under_rated": {
+        "hits": 9,
+        "n": 19,
+        "rate": 0.4737
+      },
+      "over_rated": {
+        "hits": 5,
+        "n": 19,
+        "rate": 0.2632
+      },
+      "technique_exact": {
+        "hits": 1,
+        "n": 14,
+        "rate": 0.0714
+      },
+      "technique_parent": {
+        "hits": 1,
+        "n": 14,
+        "rate": 0.0714
+      },
+      "benign_flagged_medium_plus": {
+        "hits": 5,
+        "n": 5,
+        "rate": 1.0
+      },
+      "failed_closed": {
+        "hits": 0,
+        "n": 19,
+        "rate": 0.0
+      },
+      "flagged_for_review": {
+        "hits": 1,
+        "n": 19,
+        "rate": 0.0526
+      },
+      "severity_exact_valid_only": {
+        "hits": 5,
+        "n": 19,
+        "rate": 0.2632
+      },
+      "severity_within_one_valid_only": {
+        "hits": 14,
+        "n": 19,
+        "rate": 0.7368
+      }
+    },
+    "difficulty=hard": {
+      "n": 10,
+      "severity_exact": {
+        "hits": 6,
+        "n": 10,
+        "rate": 0.6
+      },
+      "severity_within_one": {
+        "hits": 9,
+        "n": 10,
+        "rate": 0.9
+      },
+      "under_rated": {
+        "hits": 4,
+        "n": 10,
+        "rate": 0.4
+      },
+      "over_rated": {
+        "hits": 0,
+        "n": 10,
+        "rate": 0.0
+      },
+      "technique_exact": {
+        "hits": 0,
+        "n": 10,
+        "rate": 0.0
+      },
+      "technique_parent": {
+        "hits": 0,
+        "n": 10,
+        "rate": 0.0
+      },
+      "benign_flagged_medium_plus": {
+        "hits": 0,
+        "n": 0,
+        "rate": null
+      },
+      "failed_closed": {
+        "hits": 0,
+        "n": 10,
+        "rate": 0.0
+      },
+      "flagged_for_review": {
+        "hits": 3,
+        "n": 10,
+        "rate": 0.3
+      },
+      "severity_exact_valid_only": {
+        "hits": 6,
+        "n": 10,
+        "rate": 0.6
+      },
+      "severity_within_one_valid_only": {
+        "hits": 9,
+        "n": 10,
+        "rate": 0.9
+      }
+    }
+  },
+  "results": [
+    {
+      "alert_id": "ALR-0757315422",
+      "status": "ok",
+      "is_malicious": true,
+      "ambiguous": false,
+      "difficulty": "medium",
+      "truth_severity": "high",
+      "pred_severity": "high",
+      "severity_delta": 0,
+      "severity_exact": true,
+      "severity_within_one": true,
+      "truth_technique": "T1548.002",
+      "pred_technique": "T1059.001",
+      "needs_human_review": false,
+      "technique_exact": false,
+      "technique_parent": false,
+      "latency_s": 21.67,
+      "error": null,
+      "verdict": {
+        "summary": "A Windows command processor was used to execute a batch file in the user's public directory, which then deleted a registry key and executed another process.",
+        "severity": "high",
+        "attack_technique": "T1059.001",
+        "recommended_action": "Investigate the KDECO.bat file and the executed process to determine the intent and potential impact of this activity."
+      },
+      "raw_output": "{\n  \"summary\": \"A Windows command processor was used to execute a batch file in the user's public directory, which then deleted a registry key and executed another process.\",\n  \"severity\": \"high\",\n  \"attack_technique\": \"T1059.001\",\n  \"recommended_action\": \"Investigate the KDECO.bat file and the executed process to determine the intent and potential impact of this activity.\"\n}"
+    },
+    {
+      "alert_id": "ALR-0fcdd00dfa",
+      "status": "ok",
+      "is_malicious": true,
+      "ambiguous": false,
+      "difficulty": "hard",
+      "truth_severity": "high",
+      "pred_severity": "medium",
+      "severity_delta": -1,
+      "severity_exact": false,
+      "severity_within_one": true,
+      "truth_technique": "T1572",
+      "pred_technique": null,
+      "needs_human_review": false,
+      "technique_exact": false,
+      "technique_parent": false,
+      "latency_s": 14.25,
+      "error": null,
+      "verdict": {
+        "summary": "A remote connection was made to PC01.example.corp from the local loopback address, which may indicate a potential security issue.",
+        "severity": "medium",
+        "attack_technique": null,
+        "recommended_action": "Review the system logs for any other suspicious activity and investigate the user account 'admin01' for potential unauthorized access."
+      },
+      "raw_output": "{\n  \"summary\": \"A remote connection was made to PC01.example.corp from the local loopback address, which may indicate a potential security issue.\",\n  \"severity\": \"medium\",\n  \"attack_technique\": null,\n  \"recommended_action\": \"Review the system logs for any other suspicious activity and investigate the user account 'admin01' for potential unauthorized access.\"\n}"
+    },
+    {
+      "alert_id": "ALR-1964131fa9",
+      "status": "ok",
+      "is_malicious": true,
+      "ambiguous": false,
+      "difficulty": "medium",
+      "truth_severity": "high",
+      "pred_severity": "medium",
+      "severity_delta": -1,
+      "severity_exact": false,
+      "severity_within_one": true,
+      "truth_technique": "T1218.011",
+      "pred_technique": "T1204",
+      "needs_human_review": false,
+      "technique_exact": false,
+      "technique_parent": false,
+      "latency_s": 20.75,
+      "error": null,
+      "verdict": {
+        "summary": "A process executed by the user IEUser ran a suspicious command line, potentially indicating a malicious script or executable was launched.",
+        "severity": "medium",
+        "attack_technique": "T1204",
+        "recommended_action": "Review the system for any signs of malware or unauthorized software and investigate the user's activities leading up to this event."
+      },
+      "raw_output": "{\n  \"summary\": \"A process executed by the user IEUser ran a suspicious command line, potentially indicating a malicious script or executable was launched.\",\n  \"severity\": \"medium\",\n  \"attack_technique\": \"T1204\",\n  \"recommended_action\": \"Review the system for any signs of malware or unauthorized software and investigate the user's activities leading up to this event.\"\n}"
+    },
+    {
+      "alert_id": "ALR-20e0cf1bb8",
+      "status": "ok",
+      "is_malicious": true,
+      "ambiguous": false,
+      "difficulty": "easy",
+      "truth_severity": "high",
+      "pred_severity": "high",
+      "severity_delta": 0,
+      "severity_exact": true,
+      "severity_within_one": true,
+      "truth_technique": "T1070.001",
+      "pred_technique": null,
+      "needs_human_review": true,
+      "technique_exact": false,
+      "technique_parent": false,
+      "latency_s": 14.4,
+      "error": null,
+      "verdict": {
+        "summary": "A user logged on to the system, but the event does not provide enough information to determine if this is a legitimate login or not.",
+        "severity": "high",
+        "attack_technique": null,
+        "recommended_action": "Review the system's audit logs to determine the legitimacy of the login and investigate any potential security risks."
+      },
+      "raw_output": "{\n  \"summary\": \"A user logged on to the system, but the event does not provide enough information to determine if this is a legitimate login or not.\",\n  \"severity\": \"medium\",\n  \"attack_technique\": null,\n  \"recommended_action\": \"Review the system's audit logs to determine the legitimacy of the login and investigate any potential security risks.\"\n}"
+    },
+    {
+      "alert_id": "ALR-29601e592a",
+      "status": "ok",
+      "is_malicious": true,
+      "ambiguous": false,
+      "difficulty": "medium",
+      "truth_severity": "high",
+      "pred_severity": "medium",
+      "severity_delta": -1,
+      "severity_exact": false,
+      "severity_within_one": true,
+      "truth_technique": "T1550.002",
+      "pred_technique": "T1059.001",
+      "needs_human_review": false,
+      "technique_exact": false,
+      "technique_parent": false,
+      "latency_s": 19.08,
+      "error": null,
+      "verdict": {
+        "summary": "A new instance of cmd.exe was launched from within a PowerShell process, which may indicate an attempt to execute malicious commands.",
+        "severity": "medium",
+        "attack_technique": "T1059.001",
+        "recommended_action": "Review the PowerShell process for any suspicious activity and investigate the command-line arguments used by cmd.exe."
+      },
+      "raw_output": "{\n  \"summary\": \"A new instance of cmd.exe was launched from within a PowerShell process, which may indicate an attempt to execute malicious commands.\",\n  \"severity\": \"medium\",\n  \"attack_technique\": \"T1059.001\",\n  \"recommended_action\": \"Review the PowerShell process for any suspicious activity and investigate the command-line arguments used by cmd.exe.\"\n}"
+    },
+    {
+      "alert_id": "ALR-2a5617d2f1",
+      "status": "ok",
+      "is_malicious": true,
+      "ambiguous": false,
+      "difficulty": "hard",
+      "truth_severity": "high",
+      "pred_severity": "medium",
+      "severity_delta": -1,
+      "severity_exact": false,
+      "severity_within_one": true,
+      "truth_technique": "T1550.002",
+      "pred_technique": "T1201",
+      "needs_human_review": false,
+      "technique_exact": false,
+      "technique_parent": false,
+      "latency_s": 22.91,
+      "error": null,
+      "verdict": {
+        "summary": "A Windows login event was recorded for a user on the MSEDGEWIN10 system, but the login type is 3, which indicates a network login, and the IP address is 127.0.0.1, which is the loopback address, suggesting a potential issue with the system's network configuration or a malicious login attempt.",
+        "severity": "medium",
+        "attack_technique": "T1201",
+        "recommended_action": "Review the system's network configuration and login logs to determine the cause of this event and ensure that the system's security settings are properly configured."
+      },
+      "raw_output": "{\n  \"summary\": \"A Windows login event was recorded for a user on the MSEDGEWIN10 system, but the login type is 3, which indicates a network login, and the IP address is 127.0.0.1, which is the loopback address, suggesting a potential issue with the system's network configuration or a malicious login attempt.\",\n  \"severity\": \"medium\",\n  \"attack_technique\": \"T1201\",\n  \"recommended_action\": \"Review the system's network configuration and login logs to determine the cause of this event and ensure that the system's security settings are properly configured.\"\n}"
+    },
+    {
+      "alert_id": "ALR-2e0e0da3da",
+      "status": "ok",
+      "is_malicious": true,
+      "ambiguous": false,
+      "difficulty": "easy",
+      "truth_severity": "high",
+      "pred_severity": "medium",
+      "severity_delta": -1,
+      "severity_exact": false,
+      "severity_within_one": true,
+      "truth_technique": "T1068",
+      "pred_technique": "T1218.005",
+      "needs_human_review": false,
+      "technique_exact": false,
+      "technique_parent": false,
+      "latency_s": 19.54,
+      "error": null,
+      "verdict": {
+        "summary": "A Windows Command Processor process was run from a suspicious parent process, which may indicate an attempt to escalate privileges.",
+        "severity": "medium",
+        "attack_technique": "T1218.005",
+        "recommended_action": "Investigate the parent process WerTrigger.exe and its parent to determine the source of the suspicious activity."
+      },
+      "raw_output": "{\n  \"summary\": \"A Windows Command Processor process was run from a suspicious parent process, which may indicate an attempt to escalate privileges.\",\n  \"severity\": \"medium\",\n  \"attack_technique\": \"T1218.005\",\n  \"recommended_action\": \"Investigate the parent process WerTrigger.exe and its parent to determine the source of the suspicious activity.\"\n}"
+    },
+    {
+      "alert_id": "ALR-30e99196d8",
+      "status": "ok",
+      "is_malicious": false,
+      "ambiguous": false,
+      "difficulty": "easy",
+      "truth_severity": "informational",
+      "pred_severity": "medium",
+      "severity_delta": 2,
+      "severity_exact": false,
+      "severity_within_one": false,
+      "truth_technique": null,
+      "pred_technique": "T1546.003",
+      "needs_human_review": false,
+      "technique_exact": null,
+      "technique_parent": null,
+      "latency_s": 13.92,
+      "error": null,
+      "verdict": {
+        "summary": "A Windows service named 'Time Broker' has started on the system, which may be a legitimate system service or a malicious one.",
+        "severity": "medium",
+        "attack_technique": "T1546.003",
+        "recommended_action": "Review the service configuration and ensure it is a legitimate system service."
+      },
+      "raw_output": "{\n  \"summary\": \"A Windows service named 'Time Broker' has started on the system, which may be a legitimate system service or a malicious one.\",\n  \"severity\": \"medium\",\n  \"attack_technique\": \"T1546.003\",\n  \"recommended_action\": \"Review the service configuration and ensure it is a legitimate system service.\"\n}"
+    },
+    {
+      "alert_id": "ALR-3de7814d55",
+      "status": "ok",
+      "is_malicious": true,
+      "ambiguous": false,
+      "difficulty": "hard",
+      "truth_severity": "high",
+      "pred_severity": "medium",
+      "severity_delta": -1,
+      "severity_exact": false,
+      "severity_within_one": true,
+      "truth_technique": "T1068",
+      "pred_technique": "T1055",
+      "needs_human_review": false,
+      "technique_exact": false,
+      "technique_parent": false,
+      "latency_s": 14.95,
+      "error": null,
+      "verdict": {
+        "summary": "A process running as a system service attempted to modify a registry key that is not a standard Windows location, which could be an attempt to hide malware.",
+        "severity": "medium",
+        "attack_technique": "T1055",
+        "recommended_action": "Investigate the system service and the modified registry key to determine the cause and potential impact."
+      },
+      "raw_output": "{\n  \"summary\": \"A process running as a system service attempted to modify a registry key that is not a standard Windows location, which could be an attempt to hide malware.\",\n  \"severity\": \"medium\",\n  \"attack_technique\": \"T1055\",\n  \"recommended_action\": \"Investigate the system service and the modified registry key to determine the cause and potential impact.\"\n}"
+    },
+    {
+      "alert_id": "ALR-3deca53284",
+      "status": "ok",
+      "is_malicious": true,
+      "ambiguous": false,
+      "difficulty": "medium",
+      "truth_severity": "high",
+      "pred_severity": "high",
+      "severity_delta": 0,
+      "severity_exact": true,
+      "severity_within_one": true,
+      "truth_technique": "T1547.001",
+      "pred_technique": "T1218",
+      "needs_human_review": false,
+      "technique_exact": false,
+      "technique_parent": false,
+      "latency_s": 14.58,
+      "error": null,
+      "verdict": {
+        "summary": "A process attempted to modify the Windows Run registry key, which could be used to launch a malicious executable at system startup.",
+        "severity": "high",
+        "attack_technique": "T1218",
+        "recommended_action": "Investigate the process and its parent, and review the system for any signs of malware or unauthorized changes."
+      },
+      "raw_output": "{\n  \"summary\": \"A process attempted to modify the Windows Run registry key, which could be used to launch a malicious executable at system startup.\",\n  \"severity\": \"high\",\n  \"attack_technique\": \"T1218\",\n  \"recommended_action\": \"Investigate the process and its parent, and review the system for any signs of malware or unauthorized changes.\"\n}"
+    },
+    {
+      "alert_id": "ALR-50c92404bc",
+      "status": "ok",
+      "is_malicious": true,
+      "ambiguous": false,
+      "difficulty": "hard",
+      "truth_severity": "medium",
+      "pred_severity": "medium",
+      "severity_delta": 0,
+      "severity_exact": true,
+      "severity_within_one": true,
+      "truth_technique": "T1053.005",
+      "pred_technique": "T1047",
+      "needs_human_review": false,
+      "technique_exact": false,
+      "technique_parent": false,
+      "latency_s": 16.31,
+      "error": null,
+      "verdict": {
+        "summary": "A PowerShell process on MSEDGEWIN10 connected to a Windows service on MSEDGEWIN10CLONE over port 135, which is a potential indicator of lateral movement.",
+        "severity": "medium",
+        "attack_technique": "T1047",
+        "recommended_action": "Investigate the connection and determine if it is legitimate or malicious."
+      },
+      "raw_output": "{\n  \"summary\": \"A PowerShell process on MSEDGEWIN10 connected to a Windows service on MSEDGEWIN10CLONE over port 135, which is a potential indicator of lateral movement.\",\n  \"severity\": \"medium\",\n  \"attack_technique\": \"T1047\",\n  \"recommended_action\": \"Investigate the connection and determine if it is legitimate or malicious.\"\n}"
+    },
+    {
+      "alert_id": "ALR-514e20d2ce",
+      "status": "ok",
+      "is_malicious": true,
+      "ambiguous": false,
+      "difficulty": "medium",
+      "truth_severity": "high",
+      "pred_severity": "medium",
+      "severity_delta": -1,
+      "severity_exact": false,
+      "severity_within_one": true,
+      "truth_technique": "T1218.005",
+      "pred_technique": "T1204",
+      "needs_human_review": false,
+      "technique_exact": false,
+      "technique_parent": false,
+      "latency_s": 19.49,
+      "error": null,
+      "verdict": {
+        "summary": "A process launched an HTA file from the user's public directory, which may be a sign of malicious activity.",
+        "severity": "medium",
+        "attack_technique": "T1204",
+        "recommended_action": "Review the system for any signs of malware and investigate the source of the HTA file."
+      },
+      "raw_output": "{\n  \"summary\": \"A process launched an HTA file from the user's public directory, which may be a sign of malicious activity.\",\n  \"severity\": \"medium\",\n  \"attack_technique\": \"T1204\",\n  \"recommended_action\": \"Review the system for any signs of malware and investigate the source of the HTA file.\"\n}"
+    },
+    {
+      "alert_id": "ALR-591218719e",
+      "status": "ok",
+      "is_malicious": true,
+      "ambiguous": false,
+      "difficulty": "medium",
+      "truth_severity": "medium",
+      "pred_severity": "medium",
+      "severity_delta": 0,
+      "severity_exact": true,
+      "severity_within_one": true,
+      "truth_technique": "T1021.006",
+      "pred_technique": "T1218",
+      "needs_human_review": false,
+      "technique_exact": false,
+      "technique_parent": false,
+      "latency_s": 18.2,
+      "error": null,
+      "verdict": {
+        "summary": "A process named HOSTNAME.EXE was executed by the Administrator account, which may indicate an attempt to modify the system's hostname.",
+        "severity": "medium",
+        "attack_technique": "T1218",
+        "recommended_action": "Review the system's hostname and ensure it has not been modified unexpectedly."
+      },
+      "raw_output": "{\n  \"summary\": \"A process named HOSTNAME.EXE was executed by the Administrator account, which may indicate an attempt to modify the system's hostname.\",\n  \"severity\": \"medium\",\n  \"attack_technique\": \"T1218\",\n  \"recommended_action\": \"Review the system's hostname and ensure it has not been modified unexpectedly.\"\n}"
+    },
+    {
+      "alert_id": "ALR-5e70abe56a",
+      "status": "ok",
+      "is_malicious": true,
+      "ambiguous": false,
+      "difficulty": "easy",
+      "truth_severity": "high",
+      "pred_severity": "high",
+      "severity_delta": 0,
+      "severity_exact": true,
+      "severity_within_one": true,
+      "truth_technique": "T1134.001",
+      "pred_technique": "T1059.001",
+      "needs_human_review": true,
+      "technique_exact": false,
+      "technique_parent": false,
+      "latency_s": 20.42,
+      "error": null,
+      "verdict": {
+        "summary": "A system process executed the 'whoami' command, which is a legitimate Windows utility. However, it was launched by a suspicious process 'EfsPotato.exe' from a temporary directory.",
+        "severity": "high",
+        "attack_technique": "T1059.001",
+        "recommended_action": "Investigate the 'EfsPotato.exe' process and its parent process to determine if they are legitimate or malicious."
+      },
+      "raw_output": "{\n  \"summary\": \"A system process executed the 'whoami' command, which is a legitimate Windows utility. However, it was launched by a suspicious process 'EfsPotato.exe' from a temporary directory.\",\n  \"severity\": \"medium\",\n  \"attack_technique\": \"T1059.001\",\n  \"recommended_action\": \"Investigate the 'EfsPotato.exe' process and its parent process to determine if they are legitimate or malicious.\"\n}"
+    },
+    {
+      "alert_id": "ALR-6282d85e46",
+      "status": "ok",
+      "is_malicious": false,
+      "ambiguous": false,
+      "difficulty": "medium",
+      "truth_severity": "informational",
+      "pred_severity": "medium",
+      "severity_delta": 2,
+      "severity_exact": false,
+      "severity_within_one": false,
+      "truth_technique": null,
+      "pred_technique": "T1059.001",
+      "needs_human_review": false,
+      "technique_exact": null,
+      "technique_parent": null,
+      "latency_s": 20.59,
+      "error": null,
+      "verdict": {
+        "summary": "A Windows system process (svchost.exe) spawned a new cmd.exe process to run a batch script (CheckStatus.bat) in the Program Files directory, which may indicate a malicious script is being executed.",
+        "severity": "medium",
+        "attack_technique": "T1059.001",
+        "recommended_action": "Review the CheckStatus.bat script to determine its purpose and ensure it is not malicious."
+      },
+      "raw_output": "{\n  \"summary\": \"A Windows system process (svchost.exe) spawned a new cmd.exe process to run a batch script (CheckStatus.bat) in the Program Files directory, which may indicate a malicious script is being executed.\",\n  \"severity\": \"medium\",\n  \"attack_technique\": \"T1059.001\",\n  \"recommended_action\": \"Review the CheckStatus.bat script to determine its purpose and ensure it is not malicious.\"\n}"
+    },
+    {
+      "alert_id": "ALR-6b43c29634",
+      "status": "ok",
+      "is_malicious": true,
+      "ambiguous": false,
+      "difficulty": "medium",
+      "truth_severity": "high",
+      "pred_severity": "medium",
+      "severity_delta": -1,
+      "severity_exact": false,
+      "severity_within_one": true,
+      "truth_technique": "T1112",
+      "pred_technique": "T1112",
+      "needs_human_review": false,
+      "technique_exact": true,
+      "technique_parent": true,
+      "latency_s": 14.39,
+      "error": null,
+      "verdict": {
+        "summary": "A process modified a Windows registry value related to Remote Desktop connections, which could be an attempt to enable or disable RDP.",
+        "severity": "medium",
+        "attack_technique": "T1112",
+        "recommended_action": "Review the system's Remote Desktop configuration and ensure it aligns with organizational policies."
+      },
+      "raw_output": "{\n  \"summary\": \"A process modified a Windows registry value related to Remote Desktop connections, which could be an attempt to enable or disable RDP.\",\n  \"severity\": \"medium\",\n  \"attack_technique\": \"T1112\",\n  \"recommended_action\": \"Review the system's Remote Desktop configuration and ensure it aligns with organizational policies.\"\n}"
+    },
+    {
+      "alert_id": "ALR-71bac04ac8",
+      "status": "ok",
+      "is_malicious": false,
+      "ambiguous": false,
+      "difficulty": "easy",
+      "truth_severity": "informational",
+      "pred_severity": "medium",
+      "severity_delta": 2,
+      "severity_exact": false,
+      "severity_within_one": false,
+      "truth_technique": null,
+      "pred_technique": "T1218.005",
+      "needs_human_review": false,
+      "technique_exact": null,
+      "technique_parent": null,
+      "latency_s": 19.41,
+      "error": null,
+      "verdict": {
+        "summary": "A svchost.exe process was started with an unusual command line argument, which may indicate a malicious attempt to inject code into the process.",
+        "severity": "medium",
+        "attack_technique": "T1218.005",
+        "recommended_action": "Investigate the svchost.exe process and its parent process to determine the cause of the unusual command line argument."
+      },
+      "raw_output": "{\n  \"summary\": \"A svchost.exe process was started with an unusual command line argument, which may indicate a malicious attempt to inject code into the process.\",\n  \"severity\": \"medium\",\n  \"attack_technique\": \"T1218.005\",\n  \"recommended_action\": \"Investigate the svchost.exe process and its parent process to determine the cause of the unusual command line argument.\"\n}"
+    },
+    {
+      "alert_id": "ALR-752363d8c9",
+      "status": "ok",
+      "is_malicious": true,
+      "ambiguous": false,
+      "difficulty": "easy",
+      "truth_severity": "critical",
+      "pred_severity": "high",
+      "severity_delta": -1,
+      "severity_exact": false,
+      "severity_within_one": true,
+      "truth_technique": "T1547.005",
+      "pred_technique": "T1053",
+      "needs_human_review": true,
+      "technique_exact": false,
+      "technique_parent": false,
+      "latency_s": 14.46,
+      "error": null,
+      "verdict": {
+        "summary": "A process with ID 640 accessed a log file in the System32 directory, which may indicate an attempt to tamper with system logs.",
+        "severity": "high",
+        "attack_technique": "T1053",
+        "recommended_action": "Review system logs for potential tampering and investigate the process with ID 640"
+      },
+      "raw_output": "{\n  \"summary\": \"A process with ID 640 accessed a log file in the System32 directory, which may indicate an attempt to tamper with system logs.\",\n  \"severity\": \"medium\",\n  \"attack_technique\": \"T1053\",\n  \"recommended_action\": \"Review system logs for potential tampering and investigate the process with ID 640\"\n}"
+    },
+    {
+      "alert_id": "ALR-7e90e7a6fe",
+      "status": "ok",
+      "is_malicious": true,
+      "ambiguous": false,
+      "difficulty": "easy",
+      "truth_severity": "critical",
+      "pred_severity": "medium",
+      "severity_delta": -2,
+      "severity_exact": false,
+      "severity_within_one": false,
+      "truth_technique": "T1068",
+      "pred_technique": "T1059.001",
+      "needs_human_review": false,
+      "technique_exact": false,
+      "technique_parent": false,
+      "latency_s": 19.45,
+      "error": null,
+      "verdict": {
+        "summary": "A process named EfsPotato.exe was executed from a temporary directory, and it attempted to determine the current user. This could be a sign of malicious activity.",
+        "severity": "medium",
+        "attack_technique": "T1059.001",
+        "recommended_action": "Investigate the execution of EfsPotato.exe and determine if it is a legitimate process or a potential threat."
+      },
+      "raw_output": "{\n  \"summary\": \"A process named EfsPotato.exe was executed from a temporary directory, and it attempted to determine the current user. This could be a sign of malicious activity.\",\n  \"severity\": \"medium\",\n  \"attack_technique\": \"T1059.001\",\n  \"recommended_action\": \"Investigate the execution of EfsPotato.exe and determine if it is a legitimate process or a potential threat.\"\n}"
+    },
+    {
+      "alert_id": "ALR-82e190d9ee",
+      "status": "ok",
+      "is_malicious": true,
+      "ambiguous": false,
+      "difficulty": "hard",
+      "truth_severity": "critical",
+      "pred_severity": "critical",
+      "severity_delta": 0,
+      "severity_exact": true,
+      "severity_within_one": true,
+      "truth_technique": "T1003.006",
+      "pred_technique": "T1133",
+      "needs_human_review": true,
+      "technique_exact": false,
+      "technique_parent": false,
+      "latency_s": 16.87,
+      "error": null,
+      "verdict": {
+        "summary": "An administrator on the domain controller DC1 accessed a sensitive object in Active Directory, indicating potential misuse of administrative privileges.",
+        "severity": "critical",
+        "attack_technique": "T1133",
+        "recommended_action": "Review the administrator's actions and ensure that they were authorized and necessary for their role."
+      },
+      "raw_output": "{\n  \"summary\": \"An administrator on the domain controller DC1 accessed a sensitive object in Active Directory, indicating potential misuse of administrative privileges.\",\n  \"severity\": \"high\",\n  \"attack_technique\": \"T1133\",\n  \"recommended_action\": \"Review the administrator's actions and ensure that they were authorized and necessary for their role.\"\n}"
+    },
+    {
+      "alert_id": "ALR-876ba19b2f",
+      "status": "ok",
+      "is_malicious": true,
+      "ambiguous": false,
+      "difficulty": "medium",
+      "truth_severity": "medium",
+      "pred_severity": "medium",
+      "severity_delta": 0,
+      "severity_exact": true,
+      "severity_within_one": true,
+      "truth_technique": "T1562.004",
+      "pred_technique": "T1210",
+      "needs_human_review": false,
+      "technique_exact": false,
+      "technique_parent": false,
+      "latency_s": 20.02,
+      "error": null,
+      "verdict": {
+        "summary": "A system administrator appears to be configuring the Windows firewall to allow incoming RDP connections on port 3389, but the process was launched from a suspicious application (RDPWrap) installed on the user's desktop.",
+        "severity": "medium",
+        "attack_technique": "T1210",
+        "recommended_action": "Review the RDPWrap application and its installation to ensure it is legitimate and not a malicious tool."
+      },
+      "raw_output": "{\n  \"summary\": \"A system administrator appears to be configuring the Windows firewall to allow incoming RDP connections on port 3389, but the process was launched from a suspicious application (RDPWrap) installed on the user's desktop.\",\n  \"severity\": \"medium\",\n  \"attack_technique\": \"T1210\",\n  \"recommended_action\": \"Review the RDPWrap application and its installation to ensure it is legitimate and not a malicious tool.\"\n}"
+    },
+    {
+      "alert_id": "ALR-92aba37cd9",
+      "status": "ok",
+      "is_malicious": true,
+      "ambiguous": false,
+      "difficulty": "medium",
+      "truth_severity": "high",
+      "pred_severity": "medium",
+      "severity_delta": -1,
+      "severity_exact": false,
+      "severity_within_one": true,
+      "truth_technique": "T1222.001",
+      "pred_technique": "T1055",
+      "needs_human_review": false,
+      "technique_exact": false,
+      "technique_parent": false,
+      "latency_s": 19.5,
+      "error": null,
+      "verdict": {
+        "summary": "A process executed the icacls.exe utility to grant elevated permissions to the termsrv.dll file, which is a suspicious activity as it may be an attempt to escalate privileges.",
+        "severity": "medium",
+        "attack_technique": "T1055",
+        "recommended_action": "Review the parent process and its command line to determine the context of this activity and investigate further."
+      },
+      "raw_output": "{\n  \"summary\": \"A process executed the icacls.exe utility to grant elevated permissions to the termsrv.dll file, which is a suspicious activity as it may be an attempt to escalate privileges.\",\n  \"severity\": \"medium\",\n  \"attack_technique\": \"T1055\",\n  \"recommended_action\": \"Review the parent process and its command line to determine the context of this activity and investigate further.\"\n}"
+    },
+    {
+      "alert_id": "ALR-937049c088",
+      "status": "ok",
+      "is_malicious": true,
+      "ambiguous": false,
+      "difficulty": "hard",
+      "truth_severity": "medium",
+      "pred_severity": "medium",
+      "severity_delta": 0,
+      "severity_exact": true,
+      "severity_within_one": true,
+      "truth_technique": "T1087.002",
+      "pred_technique": "T1055",
+      "needs_human_review": false,
+      "technique_exact": false,
+      "technique_parent": false,
+      "latency_s": 18.93,
+      "error": null,
+      "verdict": {
+        "summary": "A user accessed the IPC$ share on the local machine, which is a common share used for remote administration. This activity is unusual because it occurred from a non-standard port and may indicate a malicious attempt to access the system.",
+        "severity": "medium",
+        "attack_technique": "T1055",
+        "recommended_action": "Review the user's access history and investigate the reason for accessing the IPC$ share from a non-standard port."
+      },
+      "raw_output": "{\n  \"summary\": \"A user accessed the IPC$ share on the local machine, which is a common share used for remote administration. This activity is unusual because it occurred from a non-standard port and may indicate a malicious attempt to access the system.\",\n  \"severity\": \"medium\",\n  \"attack_technique\": \"T1055\",\n  \"recommended_action\": \"Review the user's access history and investigate the reason for accessing the IPC$ share from a non-standard port.\"\n}"
+    },
+    {
+      "alert_id": "ALR-9a9bf7be21",
+      "status": "ok",
+      "is_malicious": true,
+      "ambiguous": false,
+      "difficulty": "medium",
+      "truth_severity": "high",
+      "pred_severity": "medium",
+      "severity_delta": -1,
+      "severity_exact": false,
+      "severity_within_one": true,
+      "truth_technique": "T1548.002",
+      "pred_technique": "T1055",
+      "needs_human_review": false,
+      "technique_exact": false,
+      "technique_parent": false,
+      "latency_s": 18.81,
+      "error": null,
+      "verdict": {
+        "summary": "The Task Scheduler was run from the desktop of a user account with medium integrity level, which may indicate a malicious or unauthorized action.",
+        "severity": "medium",
+        "attack_technique": "T1055",
+        "recommended_action": "Review the user's account and desktop for signs of tampering or unauthorized activity."
+      },
+      "raw_output": "{\n  \"summary\": \"The Task Scheduler was run from the desktop of a user account with medium integrity level, which may indicate a malicious or unauthorized action.\",\n  \"severity\": \"medium\",\n  \"attack_technique\": \"T1055\",\n  \"recommended_action\": \"Review the user's account and desktop for signs of tampering or unauthorized activity.\"\n}"
+    },
+    {
+      "alert_id": "ALR-af0b9d0fd6",
+      "status": "ok",
+      "is_malicious": false,
+      "ambiguous": false,
+      "difficulty": "medium",
+      "truth_severity": "informational",
+      "pred_severity": "medium",
+      "severity_delta": 2,
+      "severity_exact": false,
+      "severity_within_one": false,
+      "truth_technique": null,
+      "pred_technique": "T1059.001",
+      "needs_human_review": false,
+      "technique_exact": null,
+      "technique_parent": null,
+      "latency_s": 20.41,
+      "error": null,
+      "verdict": {
+        "summary": "A Windows system process executed a command to query the registry for a specific key, which may be indicative of an attempt to gather information about installed network capture software.",
+        "severity": "medium",
+        "attack_technique": "T1059.001",
+        "recommended_action": "Review the system's network capture software configuration and ensure that it is up-to-date and properly configured."
+      },
+      "raw_output": "{\n  \"summary\": \"A Windows system process executed a command to query the registry for a specific key, which may be indicative of an attempt to gather information about installed network capture software.\",\n  \"severity\": \"medium\",\n  \"attack_technique\": \"T1059.001\",\n  \"recommended_action\": \"Review the system's network capture software configuration and ensure that it is up-to-date and properly configured.\"\n}"
+    },
+    {
+      "alert_id": "ALR-b20ca070ed",
+      "status": "ok",
+      "is_malicious": false,
+      "ambiguous": false,
+      "difficulty": "easy",
+      "truth_severity": "informational",
+      "pred_severity": "informational",
+      "severity_delta": 0,
+      "severity_exact": true,
+      "severity_within_one": true,
+      "truth_technique": null,
+      "pred_technique": null,
+      "needs_human_review": false,
+      "technique_exact": null,
+      "technique_parent": null,
+      "latency_s": 17.08,
+      "error": null,
+      "verdict": {
+        "summary": "A Windows system service (gpsvc) was started by the system process, which is a normal activity.",
+        "severity": "informational",
+        "attack_technique": null,
+        "recommended_action": "No action needed; this is a normal system process."
+      },
+      "raw_output": "{\n  \"summary\": \"A Windows system service (gpsvc) was started by the system process, which is a normal activity.\",\n  \"severity\": \"informational\",\n  \"attack_technique\": null,\n  \"recommended_action\": \"No action needed; this is a normal system process.\"\n}"
+    },
+    {
+      "alert_id": "ALR-b3aad65497",
+      "status": "ok",
+      "is_malicious": false,
+      "ambiguous": false,
+      "difficulty": "medium",
+      "truth_severity": "informational",
+      "pred_severity": "medium",
+      "severity_delta": 2,
+      "severity_exact": false,
+      "severity_within_one": false,
+      "truth_technique": null,
+      "pred_technique": "T1218.005",
+      "needs_human_review": false,
+      "technique_exact": null,
+      "technique_parent": null,
+      "latency_s": 16.73,
+      "error": null,
+      "verdict": {
+        "summary": "A Windows process was launched with elevated privileges, which could be a sign of malicious activity.",
+        "severity": "medium",
+        "attack_technique": "T1218.005",
+        "recommended_action": "Review the system for any signs of malware or unauthorized changes."
+      },
+      "raw_output": "{\n  \"summary\": \"A Windows process was launched with elevated privileges, which could be a sign of malicious activity.\",\n  \"severity\": \"medium\",\n  \"attack_technique\": \"T1218.005\",\n  \"recommended_action\": \"Review the system for any signs of malware or unauthorized changes.\"\n}"
+    },
+    {
+      "alert_id": "ALR-bbafbad51b",
+      "status": "ok",
+      "is_malicious": false,
+      "ambiguous": false,
+      "difficulty": "easy",
+      "truth_severity": "informational",
+      "pred_severity": "informational",
+      "severity_delta": 0,
+      "severity_exact": true,
+      "severity_within_one": true,
+      "truth_technique": null,
+      "pred_technique": null,
+      "needs_human_review": false,
+      "technique_exact": null,
+      "technique_parent": null,
+      "latency_s": 14.19,
+      "error": null,
+      "verdict": {
+        "summary": "A system login event was recorded for the SYSTEM account, which is a normal occurrence on Windows systems.",
+        "severity": "informational",
+        "attack_technique": null,
+        "recommended_action": "No action is required; this is a normal system event."
+      },
+      "raw_output": "{\n  \"summary\": \"A system login event was recorded for the SYSTEM account, which is a normal occurrence on Windows systems.\",\n  \"severity\": \"informational\",\n  \"attack_technique\": null,\n  \"recommended_action\": \"No action is required; this is a normal system event.\"\n}"
+    },
+    {
+      "alert_id": "ALR-bff7416e6a",
+      "status": "ok",
+      "is_malicious": true,
+      "ambiguous": false,
+      "difficulty": "medium",
+      "truth_severity": "critical",
+      "pred_severity": "high",
+      "severity_delta": -1,
+      "severity_exact": false,
+      "severity_within_one": true,
+      "truth_technique": "T1003.001",
+      "pred_technique": "T1055",
+      "needs_human_review": true,
+      "technique_exact": false,
+      "technique_parent": false,
+      "latency_s": 21.5,
+      "error": null,
+      "verdict": {
+        "summary": "A process running as the IEUser account attempted to access the lsass.exe process, which is responsible for handling Windows login credentials. This access attempt may be a sign of a malicious process trying to steal credentials.",
+        "severity": "high",
+        "attack_technique": "T1055",
+        "recommended_action": "Review the system for any signs of credential theft or other malicious activity, and consider collecting additional logs or conducting further investigation."
+      },
+      "raw_output": "{\n  \"summary\": \"A process running as the IEUser account attempted to access the lsass.exe process, which is responsible for handling Windows login credentials. This access attempt may be a sign of a malicious process trying to steal credentials.\",\n  \"severity\": \"medium\",\n  \"attack_technique\": \"T1055\",\n  \"recommended_action\": \"Review the system for any signs of credential theft or other malicious activity, and consider collecting additional logs or conducting further investigation.\"\n}"
+    },
+    {
+      "alert_id": "ALR-c869591edd",
+      "status": "ok",
+      "is_malicious": true,
+      "ambiguous": false,
+      "difficulty": "medium",
+      "truth_severity": "high",
+      "pred_severity": "medium",
+      "severity_delta": -1,
+      "severity_exact": false,
+      "severity_within_one": true,
+      "truth_technique": "T1136.002",
+      "pred_technique": "T1134",
+      "needs_human_review": false,
+      "technique_exact": false,
+      "technique_parent": false,
+      "latency_s": 17.83,
+      "error": null,
+      "verdict": {
+        "summary": "A user account was modified to allow elevation of privileges, which could be a sign of malicious activity.",
+        "severity": "medium",
+        "attack_technique": "T1134",
+        "recommended_action": "Review the user account modifications to determine the legitimate reason for the change and ensure that the modifications were made by an authorized user."
+      },
+      "raw_output": "{\n  \"summary\": \"A user account was modified to allow elevation of privileges, which could be a sign of malicious activity.\",\n  \"severity\": \"medium\",\n  \"attack_technique\": \"T1134\",\n  \"recommended_action\": \"Review the user account modifications to determine the legitimate reason for the change and ensure that the modifications were made by an authorized user.\"\n}"
+    },
+    {
+      "alert_id": "ALR-cd48cdb069",
+      "status": "ok",
+      "is_malicious": true,
+      "ambiguous": false,
+      "difficulty": "hard",
+      "truth_severity": "high",
+      "pred_severity": "high",
+      "severity_delta": 0,
+      "severity_exact": true,
+      "severity_within_one": true,
+      "truth_technique": "T1098",
+      "pred_technique": "T1134",
+      "needs_human_review": true,
+      "technique_exact": false,
+      "technique_parent": false,
+      "latency_s": 13.97,
+      "error": null,
+      "verdict": {
+        "summary": "An account was logged on to with elevated privileges, which may indicate a security issue.",
+        "severity": "high",
+        "attack_technique": "T1134",
+        "recommended_action": "Review the account activity and ensure that the elevated privileges are necessary and authorized."
+      },
+      "raw_output": "{\n  \"summary\": \"An account was logged on to with elevated privileges, which may indicate a security issue.\",\n  \"severity\": \"medium\",\n  \"attack_technique\": \"T1134\",\n  \"recommended_action\": \"Review the account activity and ensure that the elevated privileges are necessary and authorized.\"\n}"
+    },
+    {
+      "alert_id": "ALR-cf33668dd5",
+      "status": "ok",
+      "is_malicious": false,
+      "ambiguous": false,
+      "difficulty": "medium",
+      "truth_severity": "informational",
+      "pred_severity": "medium",
+      "severity_delta": 2,
+      "severity_exact": false,
+      "severity_within_one": false,
+      "truth_technique": null,
+      "pred_technique": "T1134",
+      "needs_human_review": false,
+      "technique_exact": null,
+      "technique_parent": null,
+      "latency_s": 16.47,
+      "error": null,
+      "verdict": {
+        "summary": "A process running as the LOCAL SERVICE account accessed a registry key related to the FIPS algorithm policy, which could be indicative of an attempt to disable security features.",
+        "severity": "medium",
+        "attack_technique": "T1134",
+        "recommended_action": "Review the system's security configuration and ensure that the FIPS algorithm policy is not being tampered with."
+      },
+      "raw_output": "{\n  \"summary\": \"A process running as the LOCAL SERVICE account accessed a registry key related to the FIPS algorithm policy, which could be indicative of an attempt to disable security features.\",\n  \"severity\": \"medium\",\n  \"attack_technique\": \"T1134\",\n  \"recommended_action\": \"Review the system's security configuration and ensure that the FIPS algorithm policy is not being tampered with.\"\n}"
+    },
+    {
+      "alert_id": "ALR-d1e8df1617",
+      "status": "ok",
+      "is_malicious": false,
+      "ambiguous": false,
+      "difficulty": "easy",
+      "truth_severity": "informational",
+      "pred_severity": "low",
+      "severity_delta": 1,
+      "severity_exact": false,
+      "severity_within_one": true,
+      "truth_technique": null,
+      "pred_technique": null,
+      "needs_human_review": false,
+      "technique_exact": null,
+      "technique_parent": null,
+      "latency_s": 15.18,
+      "error": null,
+      "verdict": {
+        "summary": "A Windows service, TCP/IP NetBIOS Helper, has started on the system. This is a normal occurrence, but it's worth verifying that the service is necessary and not a potential backdoor.",
+        "severity": "low",
+        "attack_technique": null,
+        "recommended_action": "Verify the necessity of the TCP/IP NetBIOS Helper service and consider disabling it if not required."
+      },
+      "raw_output": "{\n  \"summary\": \"A Windows service, TCP/IP NetBIOS Helper, has started on the system. This is a normal occurrence, but it's worth verifying that the service is necessary and not a potential backdoor.\",\n  \"severity\": \"low\",\n  \"attack_technique\": null,\n  \"recommended_action\": \"Verify the necessity of the TCP/IP NetBIOS Helper service and consider disabling it if not required.\"\n}"
+    },
+    {
+      "alert_id": "ALR-d837a895ab",
+      "status": "ok",
+      "is_malicious": false,
+      "ambiguous": false,
+      "difficulty": "easy",
+      "truth_severity": "informational",
+      "pred_severity": "medium",
+      "severity_delta": 2,
+      "severity_exact": false,
+      "severity_within_one": false,
+      "truth_technique": null,
+      "pred_technique": null,
+      "needs_human_review": false,
+      "technique_exact": null,
+      "technique_parent": null,
+      "latency_s": 19.69,
+      "error": null,
+      "verdict": {
+        "summary": "A OneDrive process was launched from the svchost process, which is a common behavior but warrants review due to potential lateral movement or privilege escalation.",
+        "severity": "medium",
+        "attack_technique": null,
+        "recommended_action": "Review the system for any suspicious activity and verify the integrity of the OneDrive process."
+      },
+      "raw_output": "{\n  \"summary\": \"A OneDrive process was launched from the svchost process, which is a common behavior but warrants review due to potential lateral movement or privilege escalation.\",\n  \"severity\": \"medium\",\n  \"attack_technique\": null,\n  \"recommended_action\": \"Review the system for any suspicious activity and verify the integrity of the OneDrive process.\"\n}"
+    },
+    {
+      "alert_id": "ALR-e63854ee22",
+      "status": "ok",
+      "is_malicious": false,
+      "ambiguous": false,
+      "difficulty": "medium",
+      "truth_severity": "informational",
+      "pred_severity": "medium",
+      "severity_delta": 2,
+      "severity_exact": false,
+      "severity_within_one": false,
+      "truth_technique": null,
+      "pred_technique": "T1134",
+      "needs_human_review": false,
+      "technique_exact": null,
+      "technique_parent": null,
+      "latency_s": 18.5,
+      "error": null,
+      "verdict": {
+        "summary": "An administrator account accessed the SYSVOL share on the domain controller, which is unusual because SYSVOL is typically accessed by the system account, not user accounts.",
+        "severity": "medium",
+        "attack_technique": "T1134",
+        "recommended_action": "Review the login history of the administrator account to determine if it was compromised or if there is a legitimate reason for the access."
+      },
+      "raw_output": "{\n  \"summary\": \"An administrator account accessed the SYSVOL share on the domain controller, which is unusual because SYSVOL is typically accessed by the system account, not user accounts.\",\n  \"severity\": \"medium\",\n  \"attack_technique\": \"T1134\",\n  \"recommended_action\": \"Review the login history of the administrator account to determine if it was compromised or if there is a legitimate reason for the access.\"\n}"
+    },
+    {
+      "alert_id": "ALR-f4092cc889",
+      "status": "ok",
+      "is_malicious": true,
+      "ambiguous": true,
+      "difficulty": "hard",
+      "truth_severity": "medium",
+      "pred_severity": "informational",
+      "severity_delta": -2,
+      "severity_exact": false,
+      "severity_within_one": false,
+      "truth_technique": "T1562.002",
+      "pred_technique": null,
+      "needs_human_review": false,
+      "technique_exact": false,
+      "technique_parent": false,
+      "latency_s": 11.83,
+      "error": null,
+      "verdict": {
+        "summary": "A Windows service, 'Windows Event Log', has been started on the system.",
+        "severity": "informational",
+        "attack_technique": null,
+        "recommended_action": "No action required; this is a normal system event."
+      },
+      "raw_output": "{\n  \"summary\": \"A Windows service, 'Windows Event Log', has been started on the system.\",\n  \"severity\": \"informational\",\n  \"attack_technique\": null,\n  \"recommended_action\": \"No action required; this is a normal system event.\"\n}"
+    },
+    {
+      "alert_id": "ALR-f5353190c7",
+      "status": "ok",
+      "is_malicious": true,
+      "ambiguous": false,
+      "difficulty": "medium",
+      "truth_severity": "medium",
+      "pred_severity": "medium",
+      "severity_delta": 0,
+      "severity_exact": true,
+      "severity_within_one": true,
+      "truth_technique": "T1068",
+      "pred_technique": "T1204",
+      "needs_human_review": false,
+      "technique_exact": false,
+      "technique_parent": false,
+      "latency_s": 18.65,
+      "error": null,
+      "verdict": {
+        "summary": "A process named POC.exe was executed from the Public folder, which is unusual because it's not a typical location for executable files.",
+        "severity": "medium",
+        "attack_technique": "T1204",
+        "recommended_action": "Investigate the POC.exe process and its parent process to determine the source and purpose of the execution."
+      },
+      "raw_output": "{\n  \"summary\": \"A process named POC.exe was executed from the Public folder, which is unusual because it's not a typical location for executable files.\",\n  \"severity\": \"medium\",\n  \"attack_technique\": \"T1204\",\n  \"recommended_action\": \"Investigate the POC.exe process and its parent process to determine the source and purpose of the execution.\"\n}"
+    },
+    {
+      "alert_id": "ALR-f8214c556e",
+      "status": "ok",
+      "is_malicious": true,
+      "ambiguous": true,
+      "difficulty": "hard",
+      "truth_severity": "medium",
+      "pred_severity": "medium",
+      "severity_delta": 0,
+      "severity_exact": true,
+      "severity_within_one": true,
+      "truth_technique": "T1572",
+      "pred_technique": null,
+      "needs_human_review": false,
+      "technique_exact": false,
+      "technique_parent": false,
+      "latency_s": 16.45,
+      "error": null,
+      "verdict": {
+        "summary": "A Windows login event was recorded for the built-in Administrator account, which is unusual because it's typically not used interactively.",
+        "severity": "medium",
+        "attack_technique": null,
+        "recommended_action": "Review the login event to determine why the Administrator account was used and ensure it was not used maliciously."
+      },
+      "raw_output": "{\n  \"summary\": \"A Windows login event was recorded for the built-in Administrator account, which is unusual because it's typically not used interactively.\",\n  \"severity\": \"medium\",\n  \"attack_technique\": null,\n  \"recommended_action\": \"Review the login event to determine why the Administrator account was used and ensure it was not used maliciously.\"\n}"
+    },
+    {
+      "alert_id": "ALR-fb15cafdea",
+      "status": "ok",
+      "is_malicious": true,
+      "ambiguous": false,
+      "difficulty": "hard",
+      "truth_severity": "high",
+      "pred_severity": "high",
+      "severity_delta": 0,
+      "severity_exact": true,
+      "severity_within_one": true,
+      "truth_technique": "T1098",
+      "pred_technique": null,
+      "needs_human_review": true,
+      "technique_exact": false,
+      "technique_parent": false,
+      "latency_s": 14.57,
+      "error": null,
+      "verdict": {
+        "summary": "An account was logged on to with elevated privileges, which may indicate a security issue.",
+        "severity": "high",
+        "attack_technique": null,
+        "recommended_action": "Review the system's audit logs to determine the reason for the elevated login and ensure that it is legitimate."
+      },
+      "raw_output": "{\n  \"summary\": \"An account was logged on to with elevated privileges, which may indicate a security issue.\",\n  \"severity\": \"medium\",\n  \"attack_technique\": null,\n  \"recommended_action\": \"Review the system's audit logs to determine the reason for the elevated login and ensure that it is legitimate.\"\n}"
+    },
+    {
+      "alert_id": "ALR-fced24eb83",
+      "status": "ok",
+      "is_malicious": true,
+      "ambiguous": false,
+      "difficulty": "medium",
+      "truth_severity": "high",
+      "pred_severity": "medium",
+      "severity_delta": -1,
+      "severity_exact": false,
+      "severity_within_one": true,
+      "truth_technique": "T1548.002",
+      "pred_technique": "T1212",
+      "needs_human_review": false,
+      "technique_exact": false,
+      "technique_parent": false,
+      "latency_s": 14.01,
+      "error": null,
+      "verdict": {
+        "summary": "A process modified the Windows environment variable 'windir' to point to a directory that is not the actual Windows directory.",
+        "severity": "medium",
+        "attack_technique": "T1212",
+        "recommended_action": "Investigate the system for potential tampering or malware activity."
+      },
+      "raw_output": "{\n  \"summary\": \"A process modified the Windows environment variable 'windir' to point to a directory that is not the actual Windows directory.\",\n  \"severity\": \"medium\",\n  \"attack_technique\": \"T1212\",\n  \"recommended_action\": \"Investigate the system for potential tampering or malware activity.\"\n}"
+    }
+  ]
+}

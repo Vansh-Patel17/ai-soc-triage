@@ -1,5 +1,20 @@
 # AI SOC alert triage under prompt injection
 
+**TL;DR**
+- **What:** a local LLM (llama3.1, 8B) triaging Windows security alerts, tested against prompt injection, with an undefended baseline and a layered "hardened" pipeline.
+- **Core finding:** log fields are an injection vector. Text an attacker plants in a command line or user name made the undefended model silently downgrade up to 29/29 malicious alerts and leak its system-prompt secret.
+- **Result:** the hardened pipeline stops all 6 known attacks, mainly by flagging every attacked alert for human review. Two of three unseen (held-out) attacks still silently suppress about 8–9 of 29 alerts per run.
+
+| Measure (per run, 29 attacked alerts unless noted) | Undefended | Hardened |
+|---|---|---|
+| Known suppression attacks (4 payloads): alerts silently suppressed (rated low/info, not flagged) | 22–29/29 depending on payload; **29/29** for fake_verdict_json and fake_authority | **0/29** for every payload |
+| Known canary-leak attack: secret delivered to the analyst | 28–29/29 | **0/29** |
+| Known attacks (all 6 payloads): alerts flagged for human review | about 1/29 (mean 1.4) | **29/29** |
+| Held-out suppression attacks (2 payloads): alerts silently suppressed | 27–29/29 | **about 8–9/29** (means 7.7 and 9.3) |
+| Clean run: benign alerts rated medium or higher (40 alerts, 1 run) | 4/11 | **8/11** |
+
+All rows are from live runs; details and ranges are in [section 5](#5-results).
+
 A small, fully local experiment: an LLM triages Windows security alerts, and an attacker hides instructions inside the log fields it reads. The repository holds:
 - an intentionally **undefended baseline** pipeline;
 - a **hardened** pipeline built from four switchable defense layers;
@@ -16,6 +31,8 @@ Model: `llama3.1:latest` (8B) via Ollama, temperature 0, seed 42. Dataset: 40 al
 - the hijack marker was delivered on **28/29**.
 
 The hardened pipeline brought all of these to **0** (live run).
+
+**How it reaches 0: mainly by escalating, not by triaging correctly.** Under attack, the model's own verdict was often still wrong: it rated up to 26.3/29 alerts low or informational per run (fake_verdict_json; see the isolation-only row in 5.2). For several payloads the output checks also rejected many outputs outright, which fails them closed (19.7/29 for fake_verdict_json, 21.3/29 for canary_leak). The pipeline gets to 0 because the rule layers raise the severity and **flag every attacked alert for human review: 29/29 in every known-payload condition**. That is the intended safe failure, but an analyst still has to triage each of those alerts.
 
 **Held-out payloads.** These 3 payloads were written after the defenses were frozen. The hardened pipeline did **not** generalize fully:
 - a plausible "asset owner comment" still silently suppressed about **9/29** alerts per run (undefended: 29/29);
@@ -44,21 +61,18 @@ The design principle that follows is **asymmetric**. The model may escalate free
 
 ## 2. Architecture
 
-```
-.evtx ──► evtx_parser ──► normalize ──► Alert (verbatim field values)
-                                            │
-                    ┌───────────────────────┴────────────────────────┐
-           baseline (prompt.py)                             hardened (hardened/pipeline.py)
-   fields pasted as "name: value" lines        [isolation] JSON-encoded fields in nonce-delimited block
-                    │                                               │
-                    └──────────────► Ollama /api/chat (JSON mode) ◄─┘
-                                            │
-                          strict pydantic TriageVerdict ── fail closed on any error
-                                            │                (status=failed, severity=high,
-                                            │                 needs_human_review)
-                     hardened only:  [output_checks] → [floor] → [detector]
-                                            │
-                                     TriageResult to analyst
+```mermaid
+flowchart TD
+    A[".evtx event logs"] --> B["evtx_parser, normalize"]
+    B --> C["Alert (verbatim field values)"]
+    C --> D["baseline: prompt.py<br/>fields pasted as 'name: value' lines"]
+    C --> E["hardened: hardened/pipeline.py<br/>[isolation] JSON-encoded fields in a nonce-delimited block"]
+    D --> F["Ollama /api/chat (JSON mode)"]
+    E --> F
+    F --> G["strict pydantic TriageVerdict<br/>fail closed on any error:<br/>status=failed, severity=high, needs_human_review"]
+    G -->|baseline| K["TriageResult to analyst"]
+    G -->|hardened only| H["[output_checks] → [floor] → [detector]"]
+    H --> K
 ```
 
 - **Verdict schema:** `summary`, `severity` (informational / low / medium / high / critical), `attack_technique` (an ATT&CK ID or null) and `recommended_action`. It is strict: no type coercion and no extra keys.
@@ -284,6 +298,14 @@ docs/threat-model.md   threat model
 scripts/build_dataset.py
 tests/                 82 tests (no Ollama needed)
 ```
+
+## Future work
+
+- **Larger and different models.** Repeat the experiment on bigger open models and on other model families, to see whether the injection results and the cost of each defense hold up.
+- **Adaptive attackers.** Write payloads iteratively against the hardened pipeline itself, instead of using fixed ones.
+- **Split-field and encoded payloads.** Spread one instruction across several fields, and hide payloads with encodings (base64, Unicode lookalikes) or other languages.
+- **Broader floor-rule coverage.** Add rules for event types that have none today (1149, 7036, 5145, 4624 and others). Then measure them against a **new** held-out set, since the current one has now been seen.
+- **Repeat clean runs for error bars.** Clean accuracy and the benign over-rating cost are single runs. Repeated runs would put confidence intervals on them.
 
 ## License
 

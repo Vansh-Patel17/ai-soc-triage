@@ -281,3 +281,9 @@ docs/threat-model.md   threat model
 scripts/build_dataset.py
 tests/                 82 tests (no Ollama needed)
 ```
+
+## License
+
+This project is licensed under the **GNU General Public License v3.0**; see [`LICENSE`](LICENSE). GPL-3.0 was chosen to stay compatible with the dataset: `eval/alerts.json` is derived from [EVTX-ATTACK-SAMPLES](https://github.com/sbousseaden/EVTX-ATTACK-SAMPLES), which is also GPL-3.0 (see section 3).
+
+The string `SIEMKEY-c4n4ry-8f31d2a7` that appears in `attacks/` and `eval/results/` is a **fake canary** planted for the leak test. It is not a real credential.
